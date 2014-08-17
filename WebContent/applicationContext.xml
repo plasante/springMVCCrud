@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="ISO_8859-1"?>
+<!DOCTYPE beans SYSTEM "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	
+	<!-- Service de logging 	
+	<bean id="logger" class="com.certification.arc.dao.LoginDAO">		
+	</bean>
+	-->
+
+	<!-- Role Data
+	<bean id="roleDAO"       class="test.role.dao.RoleDAO"></bean>
+	<bean id="roleFactory"   class="test.role.logic.RoleFactory"></bean>
+	<bean id="roleValidator" class="test.role.logic.RoleValidator"></bean>
+	-->
+	
+</beans>
