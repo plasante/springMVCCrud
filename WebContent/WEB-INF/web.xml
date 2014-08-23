@@ -5,12 +5,7 @@
     xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
     id="WebApp_ID" version="2.5">
     <display-name>SpringMVCCrud</display-name>
-    <!-- 
-    <welcome-file-list>
-        <welcome-file>index.jsp</welcome-file>
-    </welcome-file-list>
- 	-->
- 	
+
     <servlet>
         <servlet-name>springMVCCrud</servlet-name>
         <servlet-class>
@@ -22,12 +17,10 @@
         <servlet-name>springMVCCrud</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
-    <!-- 
     <jsp-config>
 	    <taglib>
     	    <taglib-uri>springMVC-tag</taglib-uri>
             <taglib-location>/WEB-INF/tlds/springMVC.tld</taglib-location>
         </taglib>
     </jsp-config>
-    -->
 </web-app>

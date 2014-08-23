@@ -1,51 +1,14 @@
-<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<html>
-<head>
-    <title>Spring 3 MVC Hibernate - Book CRUD</title>
-    <style type="text/css">
-        body {
-            font-family: verdana;
-            font-size: 12px;
-            margin: 40px;
-        }
-        .bookTable, .bookTable td {
-            border-collapse: collapse;
-            border: 1px solid #aaa;
-            margin: 2px;
-            padding: 2px 2px 2px 10px;
-            font-size: 12px;
-        }
-        .bookTable th {
-            font-weight: bold;
-            font-size: 12px;
-            background-color: #5C82FF;
-            color: white;
-        }
-        .bookLabel {
-            font-family: verdana;
-            font-size: 12px;
-            font-weight: bold;
-        }
-        a, a:AFTER {
-            color: blue;
-        }
-    </style>
-    <script type="text/javascript">
-	    function deleteBook(bookId){
-	        if(confirm('Do you want to delete this Book ?')){
-	            var url = 'delete/'+bookId;
-	            window.location.href = url;
-	        }
-	    }
-    </script>
-</head>
-<body>
-	<h2>Book Store - SpringMVC-Hibernate CRUD Application</h2>
+<%@ page isELIgnored="false" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="springMVC-tag" prefix="springMVC" %>
+
+<springMVC:mainpage>
+	<h2><spring:message code="h2.body_book" /></h2>
 	<p style="color:green; font-weight: bold;">
-		To add a New Book please click <a href="<c:url value='/home' />">
-		<img src="<c:url value='/images/vcard_add.png' />" title="Add a New Book"></a>
+		<spring:message code="label.addbook_msg" /> <a href="<c:url value='/home' />">
+		<img src="<c:url value='/resources/images/vcard_add.png' />" title="Add a New Book"></a>
 	</p>
 	<c:url var="action" value="/book/add.html" ></c:url>
 	<form:form method="post" action="${action}" commandName="book" cssClass="bookForm">
@@ -117,15 +80,15 @@
 		    </tr>
 		</table>    
 	</form:form>
-	<h3>List of Books in Library</h3>
+	<h3><spring:message code="h3.list_of_books" /></h3>
 	<c:if test="${!empty bookList}">
 		<table class="bookTable">
 			<tr>
-				<th width="180">Book Name</th>
-				<th width="160">Author Name</th>
-				<th width="60">Price</th>
-				<th width="80">Quantity</th>
-				<th width="60">Action</th>
+				<th width="180"><spring:message code="label.bookName" /></th>
+				<th width="160"><spring:message code="label.author" /></th>
+				<th width="60"><spring:message code="label.price" /></th>
+				<th width="80"><spring:message code="label.qty" /></th>
+				<th width="60"><spring:message code="label.action" /></th>
 			</tr>
 			<c:forEach items="${bookList}" var="book">
 			<tr>
@@ -135,15 +98,14 @@
 				<td>${book.author}</td>
 				<td>${book.price}
 				<td>${book.quantity}</td>
-				<td><img src="<c:url value='/images/vcard_delete.png' />" 
+				<td><img src="<c:url value='/resources/images/vcard_delete.png' />" 
 						 title="Delete Book"
 						 onclick="javascript:deleteBook(${book.id})" />
 						 <a href="<c:url value='/edit/${book.id}'/>" >
-						 <img src="<c:url value='/images/vcard_add.png'/>" /></a>
+						 <img src="<c:url value='/resources/images/vcard_add.png'/>" /></a>
 				</td>
 			</tr>
 			</c:forEach>
 		</table>
 	</c:if>
-</body>
-</html>
+</springMVC:mainpage>
