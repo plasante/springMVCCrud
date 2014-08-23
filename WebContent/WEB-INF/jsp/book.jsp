@@ -34,6 +34,7 @@
 		        </td>
 		        <td>
 		            <form:input path="bookName" />
+		            <form:errors path="bookName" cssClass="error" />
 		        </td>
 		    </tr>
 		    <tr>
@@ -44,6 +45,7 @@
 		        </td>
 		        <td>
 		            <form:input path="author" />
+		            <form:errors path="author" cssClass="error" />
 		        </td>
 		    </tr>
 		    <tr>

@@ -24,3 +24,7 @@ body {
 a, a:AFTER {
     color: blue;
 }
+
+.error {
+	color: red;
+}
