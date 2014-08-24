@@ -56,6 +56,7 @@
 		        </td>
 		        <td>
 		            <form:input path="price" />
+		            <form:errors path="price" cssClass="error" />
 		        </td>
 		    </tr>
 		    <tr>
@@ -66,6 +67,7 @@
 		        </td>
 		        <td>
 		            <form:input path="quantity" />
+		            <form:errors path="quantity" cssClass="error" />
 		        </td>
 		    </tr>
 		    <tr>
