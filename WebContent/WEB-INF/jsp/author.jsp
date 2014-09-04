@@ -47,7 +47,7 @@
 			<c:forEach items="${authorList}" var="author">
 			<tr>
 				<td>
-					<a href="<c:url value='/edit/${author.id}' />" >${author.authorName}</a>
+					<a href="<c:url value='/author/edit/${author.id}' />" >${author.authorName}</a>
 				</td>
 				<td><img src="<c:url value='/resources/images/vcard_delete.png' />" 
 						 title='<spring:message code="title_delete_author" />'
