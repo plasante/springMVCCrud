@@ -2,10 +2,13 @@ package com.uniksoft.form;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -20,14 +23,27 @@ public class Book {
 	@Column(name="BOOK_NAME", unique = true, nullable = false)
 	private String bookName;
 	
-	@Column(name="AUTHOR")
-    private String author;
-	
 	@Column(name="PRICE")
     private int price;
 	
 	@Column(name="QTY")
     private int quantity;
+	
+	/*
+	 * The column author_id will be created in the table books
+	 * The class Author maps to the table authors
+	 */
+	@ManyToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name = "author_id", nullable = true)
+	private Author author;
+	
+	public Author getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(Author author) {
+		this.author = author;
+	}
 
 	public Integer getId() {
 		return id;
@@ -43,14 +59,6 @@ public class Book {
 
 	public void setBookName(String bookName) {
 		this.bookName = bookName;
-	}
-
-	public String getAuthor() {
-		return author;
-	}
-
-	public void setAuthor(String author) {
-		this.author = author;
 	}
 
 	public int getPrice() {

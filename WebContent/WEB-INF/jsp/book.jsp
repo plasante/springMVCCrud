@@ -11,7 +11,7 @@
 		<img src="<c:url value='/resources/images/vcard_add.png' />" title="Add a New Book"></a>
 	</p>
 	<c:url var="action" value="/book/add.html" ></c:url>
-	<form:form method="post" action="${action}" commandName="book" cssClass="bookForm">
+	<form:form method="post" action="${action}" commandName="book" cssClass="bookForm" modelAttribute="book">
 		<table>
 		    <c:if test="${!empty book.bookName}">
 		    <tr>
@@ -39,13 +39,13 @@
 		    </tr>
 		    <tr>
 		        <td>
-		            <form:label path="author" cssClass="bookLabel">
+		            <form:label path="author.authorName" cssClass="bookLabel">
 		                <spring:message code="label.author" />
 		            </form:label>
 		        </td>
 		        <td>
-		            <form:input path="author" />
-		            <form:errors path="author" cssClass="error" />
+		            <form:select path="author" items="${authorsMap}"/>
+		            <form:errors path="author.authorName" cssClass="error" />
 		        </td>
 		    </tr>
 		    <tr>
@@ -99,14 +99,16 @@
 				<td>
 					<a href="<c:url value='/edit/${book.id}' />" >${book.bookName}</a>
 				</td>
-				<td>${book.author}</td>
+				<td>${book.author.authorName}</td>
 				<td>${book.price}
 				<td>${book.quantity}</td>
 				<td><img src="<c:url value='/resources/images/vcard_delete.png' />" 
 						 title="Delete Book"
 						 onclick="javascript:deleteBook(${book.id})" />
-						 <a href="<c:url value='/edit/${book.id}'/>" >
-						 <img src="<c:url value='/resources/images/vcard_add.png'/>" /></a>
+					<a href="<c:url value='/edit/${book.id}' />" >
+						<img src="<c:url value='/resources/images/vcard_add.png'/>" 
+							 title="Edit Book" />
+					</a>
 				</td>
 			</tr>
 			</c:forEach>
