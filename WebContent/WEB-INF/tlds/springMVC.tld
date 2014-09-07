@@ -15,4 +15,9 @@
 		<path>/WEB-INF/tags/mainpage.tag</path>
 	</tag-file>
 	
+	<tag-file>
+		<name>select</name>
+		<path>/WEB-INF/tags/select.tag</path>
+	</tag-file>
+	
 </taglib>
