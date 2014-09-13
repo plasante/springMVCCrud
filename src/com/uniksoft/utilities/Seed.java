@@ -82,23 +82,32 @@ public class Seed {
 		Privilege priv5 = new Privilege("mod_book");
 		Privilege priv6 = new Privilege("add_book");
 		
+		/*
+		 * privileges 1 and 2 are assigned to role1
+		 */
 		List<Privilege> privileges1 = new ArrayList<Privilege>();
 		privileges1.add(priv1);
 		privileges1.add(priv2);
 		role1.setPrivileges(privileges1);
 		
+		/*
+		 * privileges 3 is assigned to role 2
+		 */
 		List<Privilege> privileges2 = new ArrayList<Privilege>();
 		privileges2.add(priv3);
 		role2.setPrivileges(privileges2);
 		
+		// role 1 is assigned to privilege 1
 		List<Role> roles1 = new ArrayList<Role>();
 		roles1.add(role1);
 		priv1.setRoles(roles1);
 		
+		// role 1 is assigned to privilege 2
 		List<Role> roles2 = new ArrayList<Role>();
 		roles2.add(role1);
 		priv2.setRoles(roles2);
 		
+		// role 2 is assigned to privilege 3
 		List<Role> roles3 = new ArrayList<Role>();
 		roles3.add(role2);
 		priv3.setRoles(roles3);

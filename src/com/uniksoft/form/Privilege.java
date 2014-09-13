@@ -32,7 +32,7 @@ public class Privilege {
 		this.privilegeName = privilegeName;
 	}
 
-	@ManyToMany(cascade = {CascadeType.ALL})
+	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name="ROLES_PRIVILEGES", 
     		   joinColumns={@JoinColumn(name="PRIVILEGE_ID")}, 
                inverseJoinColumns={@JoinColumn(name="ROLE_ID")})
