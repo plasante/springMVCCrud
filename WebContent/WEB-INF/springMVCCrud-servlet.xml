@@ -79,6 +79,7 @@
         <property name="suffix" value=".jsp" />
     </bean>
     
+    <!-- This bean will populate the database at startup for development -->
     <bean id="seed" class="com.uniksoft.utilities.Seed"/>
     
 </beans>

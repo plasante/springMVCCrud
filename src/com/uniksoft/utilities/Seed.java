@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.uniksoft.form.Author;
 import com.uniksoft.form.Book;
+import com.uniksoft.form.Privilege;
+import com.uniksoft.form.Role;
 import com.uniksoft.service.EntityServiceImpl;
 
 public class Seed {
@@ -27,6 +29,7 @@ public class Seed {
 	public void init() {
 		System.out.println("*** seeding the db");
 		populateAuthorBook();
+		populateRolePrivilege();
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -64,5 +67,49 @@ public class Seed {
 		entityService.addEntity(book1);
 		entityService.addEntity(book2);
 		entityService.addEntity(book3);
+	}
+	
+	@SuppressWarnings({ "unchecked" })
+	public void populateRolePrivilege() {
+		System.out.println("*** Populating roles and privileges tables");
+		Role role1 = new Role("admin");
+		Role role2 = new Role("user");
+		
+		Privilege priv1 = new Privilege("manage_author");
+		Privilege priv2 = new Privilege("manage_book");
+		Privilege priv3 = new Privilege("view_book");
+		Privilege priv4 = new Privilege("del_book");
+		Privilege priv5 = new Privilege("mod_book");
+		Privilege priv6 = new Privilege("add_book");
+		
+		List<Privilege> privileges1 = new ArrayList<Privilege>();
+		privileges1.add(priv1);
+		privileges1.add(priv2);
+		role1.setPrivileges(privileges1);
+		
+		List<Privilege> privileges2 = new ArrayList<Privilege>();
+		privileges2.add(priv3);
+		role2.setPrivileges(privileges2);
+		
+		List<Role> roles1 = new ArrayList<Role>();
+		roles1.add(role1);
+		priv1.setRoles(roles1);
+		
+		List<Role> roles2 = new ArrayList<Role>();
+		roles2.add(role1);
+		priv2.setRoles(roles2);
+		
+		List<Role> roles3 = new ArrayList<Role>();
+		roles3.add(role2);
+		priv3.setRoles(roles3);
+		
+		entityService.addEntity(role1);
+		entityService.addEntity(role2);
+		entityService.addEntity(priv1);
+		entityService.addEntity(priv2);
+		entityService.addEntity(priv3);
+		entityService.addEntity(priv4);
+		entityService.addEntity(priv5);
+		entityService.addEntity(priv6);
 	}
 }

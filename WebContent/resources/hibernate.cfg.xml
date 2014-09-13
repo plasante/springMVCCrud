@@ -6,5 +6,7 @@
 	<session-factory>
         <mapping class="com.uniksoft.form.Book" />
         <mapping class="com.uniksoft.form.Author" />
+        <mapping class="com.uniksoft.form.Role" />
+        <mapping class="com.uniksoft.form.Privilege" />
     </session-factory>
 </hibernate-configuration>
