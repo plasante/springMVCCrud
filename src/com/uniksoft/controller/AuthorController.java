@@ -6,19 +6,16 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.uniksoft.form.Author;
-import com.uniksoft.form.Book;
 import com.uniksoft.service.EntityServiceImpl;
 
 @Controller
-public class EntityController {
+public class AuthorController {
 
 	@SuppressWarnings("rawtypes")
 	@Autowired
@@ -32,6 +29,7 @@ public class EntityController {
 		return "author";
 	}
 	
+	@SuppressWarnings("unchecked")
 	@RequestMapping(
 		value = "/author/add",
 		method = RequestMethod.POST
@@ -45,6 +43,7 @@ public class EntityController {
 		return "redirect:/author";
 	}
 	
+	@SuppressWarnings("unchecked")
 	@RequestMapping("/author/edit/{authorId}")
 	public String editAuthor(@PathVariable("authorId") Integer authorId, Map<String, Object> map) {
 		map.put("author", entityService.getEntityById(Author.class, authorId));

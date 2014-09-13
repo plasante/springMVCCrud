@@ -1,7 +1,6 @@
 package com.uniksoft.form.validator;
 
 import org.springframework.validation.Errors;
-import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
 import com.uniksoft.form.Book;
