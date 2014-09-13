@@ -31,6 +31,19 @@ public class Author {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "author")
 	private List<Book> books;
 	
+	
+	/*
+	 * This default constructor is needed for EntityController.java
+	 */
+	public Author() {}
+	
+	/*
+	 * This constructor is needed for Seed.java
+	 */
+	public Author(String authorName) {
+		this.authorName = authorName;
+	}
+
 	public List<Book> getBooks() {
 		return books;
 	}

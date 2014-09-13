@@ -37,6 +37,14 @@ public class Book {
 	@JoinColumn(name = "author_id", nullable = true)
 	private Author author;
 	
+	public Book() {}
+	
+	public Book(String bookName, int price, int quantity) {
+		this.bookName = bookName;
+		this.price = price;
+		this.quantity = quantity;
+	}
+
 	public Author getAuthor() {
 		return author;
 	}
