@@ -16,7 +16,7 @@
 		    <c:if test="${!empty book.bookName}">
 		    <tr>
 		        <td>
-		            <form:label path="id" cssClass="bookLabel">
+		            <form:label path="id" cssClass="entityLabel">
 		                <spring:message code="label.bookId" />
 		            </form:label>
 		        </td>
@@ -28,7 +28,7 @@
 		    </c:if>
 		    <tr>
 		        <td>
-		            <form:label path="bookName" cssClass="bookLabel">
+		            <form:label path="bookName" cssClass="entityLabel">
 		                <spring:message code="label.bookName" />
 		            </form:label>
 		        </td>
@@ -39,7 +39,7 @@
 		    </tr>
 		    <tr>
 		        <td>
-		            <form:label path="author" cssClass="bookLabel">
+		            <form:label path="author" cssClass="entityLabel">
 		                <spring:message code="label.author" />
 		            </form:label>
 		        </td>
@@ -50,7 +50,7 @@
 		    </tr>
 		    <tr>
 		        <td>
-		            <form:label path="price" cssClass="bookLabel">
+		            <form:label path="price" cssClass="entityLabel">
 		                <spring:message code="label.price" />
 		            </form:label>
 		        </td>

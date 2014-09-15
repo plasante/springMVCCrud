@@ -11,11 +11,11 @@
 		<img src="<c:url value='/resources/images/vcard_add.png' />" title='<spring:message code="label.addauthor_msg" />'></a>
 	</p>
 	<c:url var="action" value="/author/add.html" ></c:url>
-	<form:form method="post" action="${action}" commandName="author" cssClass="bookForm">
+	<form:form method="post" action="${action}" commandName="author" cssClass="bookForm" modelAttribute="author">
 		<table>
 		    <tr>
 		        <td>
-		            <form:label path="authorName" cssClass="bookLabel">
+		            <form:label path="authorName" cssClass="entityLabel">
 		                <spring:message code="label.authorName" />
 		            </form:label>
 		        </td>

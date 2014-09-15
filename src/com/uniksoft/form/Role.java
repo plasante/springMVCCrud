@@ -30,7 +30,7 @@ public class Role {
 		this.roleName = roleName;
 	}
 
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "roles")
+	@ManyToMany(fetch = FetchType.EAGER, mappedBy = "roles")
 	private List<Privilege> privileges;
 	
 	public Integer getId() {
