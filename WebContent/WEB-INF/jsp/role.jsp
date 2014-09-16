@@ -11,7 +11,7 @@
 		<img src="<c:url value='/resources/images/vcard_add.png' />" 
 						 title='<spring:message code="imgTitle.addRole" />'></a>
 	</p>
-	<c:url var="action" value="/roles/add.html" ></c:url>
+	<c:url var="action" value="/roles" ></c:url>
 	<form:form method="post" action="${action}" commandName="role" cssClass="bookForm" modelAttribute="role">
 		<table>
 		    <c:if test="${!empty role.id}">

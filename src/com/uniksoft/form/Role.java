@@ -11,6 +11,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name = "ROLES")
@@ -21,6 +24,8 @@ public class Role {
 	@Column(name = "ID", unique = true, nullable = false)
 	private Integer id;
 	
+	@NotEmpty(message = "Please enter a role name.")
+	@Size(min = 1, max = 50, message = "Your role name must between 1 and 50 characters")
 	@Column(name="ROLE_NAME", unique = true, nullable = false)
 	private String roleName;
 	
