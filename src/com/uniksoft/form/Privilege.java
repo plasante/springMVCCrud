@@ -3,10 +3,12 @@ package com.uniksoft.form;
 import static javax.persistence.GenerationType.IDENTITY;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -32,11 +34,8 @@ public class Privilege {
 		this.privilegeName = privilegeName;
 	}
 
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name="ROLES_PRIVILEGES", 
-    		   joinColumns={@JoinColumn(name="PRIVILEGE_ID")}, 
-               inverseJoinColumns={@JoinColumn(name="ROLE_ID")})
-	List<Role> roles;
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "privileges")
+	Set<Role> roles;
 	
 	public Integer getId() {
 		return id;
@@ -54,11 +53,11 @@ public class Privilege {
 		this.privilegeName = privilegeName;
 	}
 
-	public List<Role> getRoles() {
+	public Set<Role> getRoles() {
 		return roles;
 	}
 
-	public void setRoles(List<Role> roles) {
+	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
 	}
 	

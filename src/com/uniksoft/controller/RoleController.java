@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -26,55 +27,52 @@ public class RoleController {
 	@Autowired
 	private EntityServiceImpl entityService;
 	
+	@Autowired
+	private ConversionService conversionService;
+	
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/roles", method = RequestMethod.GET)
-	public ModelAndView listEntities(Map<String, Object> map) {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("role");
-		mav.addObject("role", new Role());
-		mav.addObject("roleList", entityService.listEntities(Role.class));
-		Map<String, String> privilegeMap = new HashMap<String, String>();
-		List<Privilege> privileges = entityService.listEntities(Privilege.class);
-		for (Privilege privilege : privileges) {
-			privilegeMap.put(Integer.toString(privilege.getId()), privilege.getPrivilegeName());
-		}
-		mav.addObject("privilegeMap", privilegeMap);
-		return mav;
+	public String listEntities(Map<String, Object> map) {
+		map.put("role", new Role());
+		map.put("roleList", entityService.listEntities(Role.class));
+		map.put("privilegeMap", getPrivilegesMap());
+		return "role";
 	}
 	
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/roles/edit/{roleID}", method = RequestMethod.GET)
-	public ModelAndView editEntity(@PathVariable Integer roleID, Map<String, Object> map) {
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("role", entityService.getEntityById(Role.class, roleID));
-		mav.addObject("roleList", entityService.listEntities(Role.class));
+	public String editEntity(@PathVariable Integer roleID, Map<String, Object> map) {
+		map.put("role", entityService.getEntityById(Role.class, roleID));
+		map.put("roleList", entityService.listEntities(Role.class));
+		map.put("privilegeMap", getPrivilegesMap());
+		return "role";
+	}
+	
+	@SuppressWarnings("unchecked")
+	@RequestMapping(value = "/roles" , method = RequestMethod.POST)
+	public String create(@ModelAttribute("role") @Valid Role role,
+            BindingResult result, Map<String, Object> map) {
+		if (result.hasErrors()) {
+			map.put("role", role);
+			map.put("roleList", entityService.listEntities(Role.class));
+			map.put("privilegeMap", getPrivilegesMap());
+			return "role";
+		} else {
+			if (role.getId() == null) {
+				entityService.addEntity(role);
+			} else 
+				entityService.updateEntity(role);
+			return "redirect:/roles";
+		}
+	}
+
+	@SuppressWarnings("unchecked")
+	private Map<String, String> getPrivilegesMap() {
 		Map<String, String> privilegeMap = new HashMap<String, String>();
 		List<Privilege> privileges = entityService.listEntities(Privilege.class);
 		for (Privilege privilege : privileges) {
 			privilegeMap.put(Integer.toString(privilege.getId()), privilege.getPrivilegeName());
 		}
-		mav.addObject("privilegeMap", privilegeMap);
-		mav.setViewName("role");
-		return mav;
-	}
-	
-	@SuppressWarnings("unchecked")
-	@RequestMapping(value = "/roles" , method = RequestMethod.POST)
-	public String create(@Valid @ModelAttribute("role") Role role,
-            BindingResult result, Map<String, Object> map) {
-		if (result.hasErrors()) {
-			map.put("role", role);
-			map.put("roleList", entityService.listEntities(Role.class));
-			Map<String, String> privilegeMap = new HashMap<String, String>();
-			List<Privilege> privileges = entityService.listEntities(Privilege.class);
-			for (Privilege privilege : privileges) {
-				privilegeMap.put(Integer.toString(privilege.getId()), privilege.getPrivilegeName());
-			}
-			map.put("privilegeMap", privilegeMap);
-			return "role";
-		} else {
-			entityService.addEntity(role);
-			return "redirect:/roles";
-		}
+		return privilegeMap;
 	}
 }

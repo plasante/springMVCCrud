@@ -2,13 +2,18 @@ package com.uniksoft.form;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
@@ -35,8 +40,11 @@ public class Role {
 		this.roleName = roleName;
 	}
 
-	@ManyToMany(fetch = FetchType.EAGER, mappedBy = "roles")
-	private List<Privilege> privileges;
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinTable(name="ROLES_PRIVILEGES", 
+	   joinColumns={@JoinColumn(name="ROLE_ID")}, 
+       inverseJoinColumns={@JoinColumn(name="PRIVILEGE_ID")})
+	private Set<Privilege> privileges = new HashSet<Privilege>(0);
 	
 	public Integer getId() {
 		return id;
@@ -54,11 +62,11 @@ public class Role {
 		this.roleName = roleName;
 	}
 
-	public List<Privilege> getPrivileges() {
-		return privileges;
+	public Set<Privilege> getPrivileges() {
+		return this.privileges;
 	}
 
-	public void setPrivileges(List<Privilege> privileges) {
+	public void setPrivileges(Set<Privilege> privileges) {
 		this.privileges = privileges;
 	}
 	

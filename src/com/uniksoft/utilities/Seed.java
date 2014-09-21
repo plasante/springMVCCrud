@@ -1,7 +1,9 @@
 package com.uniksoft.utilities;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.PostConstruct;
 
@@ -85,7 +87,7 @@ public class Seed {
 		/*
 		 * privileges 1 and 2 are assigned to role1
 		 */
-		List<Privilege> privileges1 = new ArrayList<Privilege>();
+		Set<Privilege> privileges1 = new HashSet<Privilege>();
 		privileges1.add(priv1);
 		privileges1.add(priv2);
 		role1.setPrivileges(privileges1);
@@ -93,30 +95,19 @@ public class Seed {
 		/*
 		 * privileges 3 is assigned to role 2
 		 */
-		List<Privilege> privileges2 = new ArrayList<Privilege>();
+		Set<Privilege> privileges2 = new HashSet<Privilege>();
 		privileges2.add(priv3);
 		role2.setPrivileges(privileges2);
 		
-		// role 1 is assigned to privilege 1
-		List<Role> roles1 = new ArrayList<Role>();
-		roles1.add(role1);
-		priv1.setRoles(roles1);
-		
-		// role 1 is assigned to privilege 2
-		List<Role> roles2 = new ArrayList<Role>();
-		roles2.add(role1);
-		priv2.setRoles(roles2);
-		
-		// role 2 is assigned to privilege 3
-		List<Role> roles3 = new ArrayList<Role>();
-		roles3.add(role2);
-		priv3.setRoles(roles3);
-		
+		/*
+		 * role1 and role2 are saved creating priv1 priv2 and priv3
+		 */
 		entityService.addEntity(role1);
 		entityService.addEntity(role2);
-		entityService.addEntity(priv1);
-		entityService.addEntity(priv2);
-		entityService.addEntity(priv3);
+
+		/*
+		 * priv4 priv5 and priv6 are created
+		 */
 		entityService.addEntity(priv4);
 		entityService.addEntity(priv5);
 		entityService.addEntity(priv6);
