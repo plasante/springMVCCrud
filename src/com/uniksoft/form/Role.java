@@ -16,6 +16,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.Valid;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
@@ -40,10 +41,18 @@ public class Role {
 		this.roleName = roleName;
 	}
 
+	/*
+	 * This is the owning side ( because of @JoinTable )
+	 * The Privilege entity will be eagerly fetched ( FetchType.EAGER )
+	 * The updates will be cascaded to the roles_privileges table ( CascadeType.ALL )
+	 * The Privilege entity will be recursively validated ( @Valid )
+	 * The Role entity needs to know the Set<Privilege> to update the association table
+	 */
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name="ROLES_PRIVILEGES", 
 	   joinColumns={@JoinColumn(name="ROLE_ID")}, 
        inverseJoinColumns={@JoinColumn(name="PRIVILEGE_ID")})
+	@Valid
 	private Set<Privilege> privileges = new HashSet<Privilege>(0);
 	
 	public Integer getId() {

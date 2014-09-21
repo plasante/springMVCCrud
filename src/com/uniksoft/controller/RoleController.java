@@ -66,6 +66,9 @@ public class RoleController {
 		}
 	}
 
+	/*
+	 * This is to populate the privileges drop-down in the role.jsp view
+	 */
 	@SuppressWarnings("unchecked")
 	private Map<String, String> getPrivilegesMap() {
 		Map<String, String> privilegeMap = new HashMap<String, String>();
