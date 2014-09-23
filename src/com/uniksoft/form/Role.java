@@ -19,6 +19,8 @@ import javax.persistence.Table;
 import javax.validation.Valid;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
@@ -48,7 +50,7 @@ public class Role {
 	 * The Privilege entity will be recursively validated ( @Valid )
 	 * The Role entity needs to know the Set<Privilege> to update the association table
 	 */
-	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
 	@JoinTable(name="ROLES_PRIVILEGES", 
 	   joinColumns={@JoinColumn(name="ROLE_ID")}, 
        inverseJoinColumns={@JoinColumn(name="PRIVILEGE_ID")})

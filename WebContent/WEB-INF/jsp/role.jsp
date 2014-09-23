@@ -92,8 +92,8 @@
 				<td><img src="<c:url value='/resources/images/vcard_delete.png' />" 
 						 title='<spring:message code="title_delete_role" />'
 						 onclick="javascript:deleteEntity(${role.id})" />
-						 <a href="<c:url value='/edit/${role.id}'/>" >
-						 <img src="<c:url value='/resources/images/vcard_add.png'/>" 
+						 <a href="<c:url value='/roles/edit/${role.id}'/>" >
+						 <img src="<c:url value='/resources/images/vcard_edit.png'/>" 
 						 				  title='<spring:message code="imgTitle.addRole" />'/></a>
 				</td>
 			</tr>

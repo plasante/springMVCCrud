@@ -39,6 +39,20 @@ public class RoleController {
 		return "role";
 	}
 	
+	@RequestMapping(value = "/roles/new", method = RequestMethod.GET)
+	public String newEntity(Map<String, Object> map) {
+		return "redirect:/roles";	// This will redirect to the listEntities method then render the role.jsp
+	}
+	
+	@SuppressWarnings("unchecked")
+	@RequestMapping(value = "/roles/delete/{roleID}", method = RequestMethod.GET)
+	public String deleteEntity(@PathVariable Integer roleID, Map<String, Object> map) {
+		if ( roleID != null) {
+			entityService.removeEntity(Role.class, roleID);
+		}
+		return "redirect:/roles";		// This will render the role.jsp
+	}
+	
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/roles/edit/{roleID}", method = RequestMethod.GET)
 	public String editEntity(@PathVariable Integer roleID, Map<String, Object> map) {
@@ -48,6 +62,10 @@ public class RoleController {
 		return "role";
 	}
 	
+	/*
+	 * The form will be data-binded, converted and validated before to be submitted
+	 * to the entityService for create or update.
+	 */
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/roles" , method = RequestMethod.POST)
 	public String create(@ModelAttribute("role") @Valid Role role,

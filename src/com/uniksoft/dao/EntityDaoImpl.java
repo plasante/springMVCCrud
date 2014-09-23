@@ -41,10 +41,10 @@ public class EntityDaoImpl<T> implements EntityDao<T> {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public void removeEntity(Class<T> T, Integer id) {
-		T entity = (T)sessionFactory.getCurrentSession().load(T, id);
-		if(null != entity) {
-			sessionFactory.getCurrentSession().delete(entity);
+	public void removeEntity(Class<T> entity, Integer id) {
+		T ent = (T)sessionFactory.getCurrentSession().load(entity, id);
+		if(null != ent) {
+			sessionFactory.getCurrentSession().delete(ent);
 		}
 	}
 
