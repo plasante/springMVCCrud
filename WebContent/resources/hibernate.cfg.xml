@@ -8,5 +8,8 @@
         <mapping class="com.uniksoft.form.Author" />
         <mapping class="com.uniksoft.form.Role" />
         <mapping class="com.uniksoft.form.Privilege" />
+        <mapping class="com.uniksoft.form.Student" />
+        <mapping class="com.uniksoft.form.Course" />
+        <mapping class="com.uniksoft.form.StudentCourse" />
     </session-factory>
 </hibernate-configuration>

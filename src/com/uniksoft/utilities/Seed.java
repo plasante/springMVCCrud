@@ -1,5 +1,6 @@
 package com.uniksoft.utilities;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -11,8 +12,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.uniksoft.form.Author;
 import com.uniksoft.form.Book;
+import com.uniksoft.form.Course;
 import com.uniksoft.form.Privilege;
 import com.uniksoft.form.Role;
+import com.uniksoft.form.Student;
+import com.uniksoft.form.StudentCourse;
 import com.uniksoft.service.EntityServiceImpl;
 
 public class Seed {
@@ -32,6 +36,7 @@ public class Seed {
 		System.out.println("*** seeding the db");
 		populateAuthorBook();
 		populateRolePrivilege();
+		populateStudentCourse();
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -111,5 +116,35 @@ public class Seed {
 		entityService.addEntity(priv4);
 		entityService.addEntity(priv5);
 		entityService.addEntity(priv6);
+	}
+	
+	@SuppressWarnings("unchecked")
+	private void populateStudentCourse() {
+		System.out.println("*** Populating students and courses tables");
+		
+		Student st1 = new Student();
+		st1.setStudentName("Pierre Lasante");
+		
+		Course c1 = new Course();
+		c1.setCourseName("c1");
+		Course c2 = new Course();
+		c2.setCourseName("c2");
+		
+		StudentCourse sc1 = new StudentCourse();
+		sc1.setRegistrationDate(new Date(1));
+		sc1.setCourse(c1);
+		sc1.setStudent(st1);
+		
+		StudentCourse sc2 = new StudentCourse();
+		sc2.setRegistrationDate(new Date(2));
+		sc2.setCourse(c2);
+		sc2.setStudent(st1);
+		
+		entityService.addEntity(sc1);
+		entityService.addEntity(sc2);
+		
+//		entityService.removeEntity(StudentCourse.class, 1);
+//		entityService.removeEntity(StudentCourse.class, 2);
+//		entityService.removeEntity(Student.class, 1);
 	}
 }
