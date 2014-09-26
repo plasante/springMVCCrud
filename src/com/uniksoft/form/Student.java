@@ -14,6 +14,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cascade;
+
 @Entity
 @Table(name = "STUDENTS")
 public class Student {
@@ -26,7 +28,7 @@ public class Student {
 	@Column(name="STUDENT_NAME", unique = true, nullable = false)
 	private String studentName;
 	
-	@OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE , CascadeType.PERSIST, CascadeType.REFRESH}, mappedBy = "student")
+	@OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL, mappedBy="student", orphanRemoval=true)
 	List<StudentCourse> studentCourse;
 	
 	public Integer getId() {

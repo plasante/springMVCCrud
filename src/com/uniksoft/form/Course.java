@@ -26,7 +26,7 @@ public class Course {
 	@Column(name="COURSE_NAME", unique = true, nullable = false)
 	private String courseName;
 	
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "course")
+	@OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL, mappedBy="course", orphanRemoval=true)
 	List<StudentCourse> studentCourse;
 	
 	public Integer getId() {

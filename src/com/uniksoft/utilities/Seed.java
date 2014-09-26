@@ -140,11 +140,14 @@ public class Seed {
 		sc2.setCourse(c2);
 		sc2.setStudent(st1);
 		
+		entityService.addEntity(st1);
+		
+		entityService.addEntity(c1);
+		entityService.addEntity(c2);
+		
 		entityService.addEntity(sc1);
 		entityService.addEntity(sc2);
 		
-//		entityService.removeEntity(StudentCourse.class, 1);
-//		entityService.removeEntity(StudentCourse.class, 2);
-//		entityService.removeEntity(Student.class, 1);
+		entityService.removeEntity(Student.class, 1);
 	}
 }

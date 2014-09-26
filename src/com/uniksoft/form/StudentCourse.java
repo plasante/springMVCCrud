@@ -26,11 +26,11 @@ public class StudentCourse {
 	@Column(name = "registration_date", nullable = true)
 	private Date registrationDate;
 	
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "student_id", nullable = true)
 	Student student;
 	
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "course_id", nullable = true)
 	Course course;
 	
