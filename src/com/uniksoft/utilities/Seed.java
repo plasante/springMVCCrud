@@ -149,5 +149,15 @@ public class Seed {
 		entityService.addEntity(sc2);
 		
 		entityService.removeEntity(Student.class, 1);
+		
+		StudentCourse sc3 = new StudentCourse();
+		sc3.setCourse(c1);
+		List<Student> l = new ArrayList<Student>();
+		sc3.setStudent(st1);
+		
+		List<StudentCourse> scl = new ArrayList<StudentCourse>();
+		scl.add(sc3);
+		st1.setStudentCourse(scl);
+		entityService.addEntity(st1);
 	}
 }
