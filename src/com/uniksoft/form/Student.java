@@ -28,8 +28,8 @@ public class Student {
 	@Column(name="STUDENT_NAME", unique = true, nullable = false)
 	private String studentName;
 	
-	@OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL, mappedBy="student", orphanRemoval=true)
-	List<StudentCourse> studentCourse;
+	@OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL, mappedBy="student", orphanRemoval=true)
+	List<StudentCourse> studentCourses;
 	
 	public Integer getId() {
 		return id;
@@ -47,11 +47,11 @@ public class Student {
 		this.studentName = studentName;
 	}
 
-	public List<StudentCourse> getStudentCourse() {
-		return studentCourse;
+	public List<StudentCourse> getStudentCourses() {
+		return studentCourses;
 	}
 
-	public void setStudentCourse(List<StudentCourse> studentCourse) {
-		this.studentCourse = studentCourse;
+	public void setStudentCourses(List<StudentCourse> studentCourses) {
+		this.studentCourses = studentCourses;
 	}
 }

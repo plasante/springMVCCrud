@@ -157,7 +157,7 @@ public class Seed {
 		
 		List<StudentCourse> scl = new ArrayList<StudentCourse>();
 		scl.add(sc3);
-		st1.setStudentCourse(scl);
+		st1.setStudentCourses(scl);
 		entityService.addEntity(st1);
 	}
 }

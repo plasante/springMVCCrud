@@ -30,6 +30,8 @@
     			<bean class="com.uniksoft.converter.StringToPrivilegeConverter" />
     			<bean class="com.uniksoft.converter.StringArrToPrivilegeConverter" />
     			<bean class="com.uniksoft.converter.StringToAuthorConverter" />
+    			<bean class="com.uniksoft.converter.StringArrToStudentCourseConverter" />
+    			<bean class="com.uniksoft.converter.StringToStudentCourseConverter" />
     		</list>
     	</property>
     </bean>
