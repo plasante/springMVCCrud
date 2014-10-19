@@ -79,8 +79,11 @@ public class Seed {
 	@SuppressWarnings({ "unchecked" })
 	public void populateRolePrivilege() {
 		System.out.println("*** Populating roles and privileges tables");
-		Role role1 = new Role("admin");
-		Role role2 = new Role("user");
+		Role role1 = new Role("superadmin");
+		Role role2 = new Role("admin");
+		Role role3 = new Role("teacher");
+		Role role4 = new Role("student");
+		
 		
 		Privilege priv1 = new Privilege("manage_author");
 		Privilege priv2 = new Privilege("manage_book");
@@ -90,32 +93,31 @@ public class Seed {
 		Privilege priv6 = new Privilege("add_book");
 		
 		/*
-		 * privileges 1 and 2 are assigned to role1
-		 */
-		Set<Privilege> privileges1 = new HashSet<Privilege>();
-		privileges1.add(priv1);
-		privileges1.add(priv2);
-		role1.setPrivileges(privileges1);
-		
-		/*
-		 * privileges 3 is assigned to role 2
-		 */
-		Set<Privilege> privileges2 = new HashSet<Privilege>();
-		privileges2.add(priv3);
-		role2.setPrivileges(privileges2);
-		
-		/*
-		 * role1 and role2 are saved creating priv1 priv2 and priv3
+		 * roles are created
 		 */
 		entityService.addEntity(role1);
 		entityService.addEntity(role2);
+		entityService.addEntity(role3);
+		entityService.addEntity(role4);
 
 		/*
-		 * priv4 priv5 and priv6 are created
+		 * privileges are created
 		 */
+		entityService.addEntity(priv1);
+		entityService.addEntity(priv2);
+		entityService.addEntity(priv3);
 		entityService.addEntity(priv4);
 		entityService.addEntity(priv5);
 		entityService.addEntity(priv6);
+		
+		/*
+		 * populating the roles_privileges association table
+		 */
+		Set<Privilege> privileges = new HashSet<Privilege>();
+		privileges.add(priv1);
+		privileges.add(priv2);
+		role1.setPrivileges(privileges);
+		entityService.updateEntity(role1);
 	}
 	
 	@SuppressWarnings("unchecked")
