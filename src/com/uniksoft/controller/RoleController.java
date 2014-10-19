@@ -6,10 +6,14 @@ import java.util.Map;
 
 import javax.validation.Valid;
 
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -76,9 +80,19 @@ public class RoleController {
 			return "role";
 		} else {
 			if (role.getId() == null) {
-				entityService.addEntity(role);
-			} else 
+				try {
+					entityService.addEntity(role);
+				} catch(ConstraintViolationException e) {
+					map.put("role", role);
+					map.put("roleList", entityService.listEntities(Role.class));
+					map.put("privilegeMap", getPrivilegesMap());
+					map.put("errorMsg", "role already used");
+					result.rejectValue("roleName", "errors.uniquerole");
+					return "role";
+				}
+			} else {
 				entityService.updateEntity(role);
+			}
 			return "redirect:/roles";
 		}
 	}

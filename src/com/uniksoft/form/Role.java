@@ -3,10 +3,8 @@ package com.uniksoft.form;
 import static javax.persistence.GenerationType.IDENTITY;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -17,6 +15,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.Valid;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
@@ -31,7 +30,8 @@ public class Role {
 	private Integer id;
 	
 	@NotEmpty(message = "Please enter a role name.")
-	@Size(min = 1, max = 50, message = "Your role name must between 1 and 50 characters")
+	@Size(min = 1, max = 50, message = "Your role name must be between 1 and 50 characters")
+	@Pattern(regexp = "[a-zA-Z]*", message = "Only alphabetic characters allowed here")
 	@Column(name="ROLE_NAME", unique = true, nullable = false)
 	private String roleName;
 	
