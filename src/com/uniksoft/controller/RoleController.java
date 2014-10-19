@@ -6,14 +6,12 @@ import java.util.Map;
 
 import javax.validation.Valid;
 
+import org.hibernate.ObjectNotFoundException;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.Errors;
-import org.springframework.validation.FieldError;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -51,7 +49,15 @@ public class RoleController {
 	@RequestMapping(value = "/roles/delete/{roleID}", method = RequestMethod.GET)
 	public String deleteEntity(@PathVariable Integer roleID, Map<String, Object> map) {
 		if ( roleID != null) {
-			entityService.removeEntity(Role.class, roleID);
+			try {
+				entityService.removeEntity(Role.class, roleID);
+			} catch(ObjectNotFoundException e) {
+				map.put("notFoundMsg", "errors.notfoundrole");
+				map.put("role", new Role());
+				map.put("roleList", entityService.listEntities(Role.class));
+				map.put("privilegeMap", getPrivilegesMap());
+				return "role";
+			}
 		}
 		return "redirect:/roles";		// This will render the role.jsp
 	}

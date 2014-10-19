@@ -9,6 +9,13 @@
     <script src="<c:url value="/resources/js/jquery-1.11.1.min.js" />"></script>
 </head>
 <body>
+	<c:if test="${!empty notFoundMsg}">
+		<font color="red">
+			<b>
+				<spring:message code="${notFoundMsg}"/>
+			</b>
+		</font>
+	</c:if>
 	<jsp:doBody/>
 </body>
 </html>
