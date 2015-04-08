@@ -60,7 +60,7 @@
 							<c:otherwise>
 								<option value="${priv.key}">${priv.value}</option>
 							</c:otherwise>
-					</c:choose>
+						</c:choose>
 					</c:forEach>
 				</form:select>
 		            	<form:errors path="privileges" cssClass="error" />
