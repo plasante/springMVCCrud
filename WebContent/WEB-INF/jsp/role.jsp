@@ -46,24 +46,24 @@
 		        </td>
 		        <td>
 		        	<form:select path="privileges">
-						<c:forEach items="${privilegeMap}" var="priv">
-							<c:set var="found" value="false"/>
-							<c:forEach items="${role.privileges}" var="rolePriv">
-								<c:if test="${rolePriv.privilegeName eq priv.value}">
-									<c:set var="found" value="true"/>
-								</c:if>
-							</c:forEach>
-							<c:choose>
-								<c:when test="${found eq true}">
-									<option value="${priv.key}" selected>${priv.value}</option>
-								</c:when>
-								<c:otherwise>
-									<option value="${priv.key}">${priv.value}</option>
-								</c:otherwise>
-							</c:choose>
+					<c:forEach items="${privilegeMap}" var="priv">
+						<c:set var="found" value="false"/>
+						<c:forEach items="${role.privileges}" var="rolePriv">
+							<c:if test="${rolePriv.privilegeName eq priv.value}">
+								<c:set var="found" value="true"/>
+							</c:if>
 						</c:forEach>
-					</form:select>
-		            <form:errors path="privileges" cssClass="error" />
+						<c:choose>
+							<c:when test="${found eq true}">
+								<option value="${priv.key}" selected>${priv.value}</option>
+							</c:when>
+							<c:otherwise>
+								<option value="${priv.key}">${priv.value}</option>
+							</c:otherwise>
+					</c:choose>
+					</c:forEach>
+				</form:select>
+		            	<form:errors path="privileges" cssClass="error" />
 		        </td>
 		    </tr>
 		    <tr>
